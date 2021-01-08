@@ -31,4 +31,14 @@ public class BoardController {
         Optional<Board> findid = boardRepository.findById(id);
         return findid;
     }
+
+    @RequestMapping(value = "/modifyBoard/{id}", method = RequestMethod.POST)
+    public Board modifyBoard(@PathVariable int id, @RequestBody Board newBoard) {
+        Board board = boardRepository.getOne(id);
+        board.setTitle(newBoard.getTitle());
+        board.setContents(newBoard.getContents());
+        board.setPrice(newBoard.getPrice());
+        board.setModify_day(newBoard.getModify_day());
+        return boardRepository.save(board);
+    }
 }

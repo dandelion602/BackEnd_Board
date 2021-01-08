@@ -3,11 +3,9 @@ package com.dandelion.board.entity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Columns;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 //getter 자동 생성
 @Getter
@@ -21,27 +19,15 @@ public class Board {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int NUMBER;
+    int number;
 
-    String TITLE;
-    String CONTENTS;
-    String DATE;
-    String MODIFY_DAY;
+    String title;
+    String contents;
+    String date;
+    String modify_day;
 
-    int MEMBER_NUMBER;
-    int VIEW;
-    int TEMP_STATUS;
-    int PRICE;
-
-    @Builder
-    public Board(int NUMBER, String TITLE, String CONTENTS, String DATE, String MODIFY_DAY, int MEMBER_NUMBER, int VIEW, int TEMP_STATUS, int PRICE) {
-        this.TITLE = TITLE;
-        this.CONTENTS = CONTENTS;
-        this.DATE = DATE;
-        this.MODIFY_DAY = MODIFY_DAY;
-        this.MEMBER_NUMBER = MEMBER_NUMBER;
-        this.VIEW = VIEW;
-        this.TEMP_STATUS = TEMP_STATUS;
-        this.PRICE = PRICE;
-    }
+    int member_number;
+    int view;
+    int temp_status;
+    int price;
 }
