@@ -5,6 +5,8 @@ import com.dandelion.board.repository.BoardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class BoardService {
 
@@ -13,5 +15,9 @@ public class BoardService {
 
     public Board saveBoard(Board board) {
         return boardRepository.save(board);
+    }
+
+    public List<Board> findBoards() {
+        return boardRepository.findAll();
     }
 }

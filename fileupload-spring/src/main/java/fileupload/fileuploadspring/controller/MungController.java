@@ -34,7 +34,7 @@ public class MungController {
         String sourceFileNameExtension = FilenameUtils.getExtension(sourceFileName).toLowerCase();
         File destinationFile;
         String destinationFileName;
-        String fileUrl = "C:\\Users\\M\\Desktop\\projcet\\javaSpring\\fileupload-spring\\src\\main\\resources\\static\\images\\";
+        String fileUrl = "C:\\Users\\M\\Desktop\\projcet\\BackEnd_Board\\fileupload-spring\\src\\main\\resources\\static\\images\\";
 
         do {
             destinationFileName = RandomStringUtils.randomAlphanumeric(32) + "." + sourceFileNameExtension;
