@@ -16,10 +16,6 @@ class BoardApplicationTests {
     @Test
     void contextLoads() {
 
-        String absolutePath = context.getRealPath("resources/board_images");
-//        File uploadedFile = new File(absolutePath, "your_file_name");
-
-        System.out.println(absolutePath);
     }
 
 }

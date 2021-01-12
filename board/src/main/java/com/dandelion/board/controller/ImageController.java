@@ -37,5 +37,4 @@ public class ImageController {
         return String.format("file %s upload successfully", multipartFile.getOriginalFilename());
     }
 
-
 }
