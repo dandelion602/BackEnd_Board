@@ -19,15 +19,15 @@ public class Board {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int number;
+    private int number;
 
-    String title;
-    String contents;
-    String date;
-    String modify_day;
+    private String title;
+    private String contents;
+    private String date;
+    private String modify_day;
 
-    int member_number;
-    int view;
-    int temp_status;
-    int price;
+    private int member_number;
+    private int view;
+    private int temp_status;
+    private int price;
 }
