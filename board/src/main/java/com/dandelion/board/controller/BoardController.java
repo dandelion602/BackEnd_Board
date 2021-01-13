@@ -2,6 +2,7 @@ package com.dandelion.board.controller;
 
 
 import com.dandelion.board.entity.Board;
+import com.dandelion.board.entity.Image;
 import com.dandelion.board.repository.BoardRepository;
 import com.dandelion.board.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin(origins = "*")
 @RestController
 public class BoardController {
 

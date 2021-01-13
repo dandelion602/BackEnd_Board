@@ -9,6 +9,7 @@ import javax.persistence.*;
 @Setter
 @Entity
 public class Image {
+
     public Image() {
     }
 
@@ -16,11 +17,11 @@ public class Image {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int number;
 
-    private int board_number;
-    String image_dir_number;
-    String filename;
-    String format;
-    int size;
-    int order;
+    @ManyToOne
+    @JoinColumn(name = "board_number")
+    private Board board;
 
+    private String fileName;
+    private String imageDirNumber;
+    private int size;
 }

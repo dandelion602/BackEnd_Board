@@ -1,5 +1,6 @@
 package com.dandelion.board.service;
 
+import com.dandelion.board.entity.Image;
 import com.dandelion.board.repository.ImageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,8 +19,6 @@ public class ImageService {
     @Autowired
     ImageRepository imageRepository;
 
-    @Autowired
-    BoardService boardService;
 
     public void write(MultipartFile file, Path dir) {
         Path filepath = Paths.get(dir.toString(), file.getOriginalFilename());
@@ -29,5 +28,9 @@ public class ImageService {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public Image save(Image image) {
+        return imageRepository.save(image);
     }
 }

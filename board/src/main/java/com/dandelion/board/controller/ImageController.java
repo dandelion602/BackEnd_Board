@@ -1,17 +1,14 @@
 package com.dandelion.board.controller;
 
+import com.dandelion.board.entity.Board;
+import com.dandelion.board.entity.Image;
 import com.dandelion.board.service.BoardService;
 import com.dandelion.board.service.ImageService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
-import java.io.OutputStream;
-import java.nio.file.Files;
+
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -20,21 +17,29 @@ import java.nio.file.Paths;
 public class ImageController {
 
     @Autowired
-    BoardService boardService;
-
-    @Autowired
     ImageService imageService;
 
-    @PostMapping("/fileupload")
+    @Autowired
+    BoardService boardService;
+
+
+    @PostMapping("/fileupload/")
     public String fileupload(@RequestParam("file") MultipartFile multipartFile) {
-        System.out.println(multipartFile.getName());
-        System.out.println(multipartFile.getContentType());
-        System.out.println(multipartFile.getSize());
-        System.out.println(multipartFile.getClass());
+
+        //이미지 파일을 받아서 dir 경로에 저장
         Path dir = Paths.get("c:/images/");
         imageService.write(multipartFile, dir);
 
+        //이미지 경로 및 내용 db에 저장
+        Image image = new Image();
+
+        image.setFileName(multipartFile.getOriginalFilename());
+        image.setSize( (int) multipartFile.getSize());
+        image.setImageDirNumber(dir.toString());
+
+
+        imageService.save(image);
+
         return String.format("file %s upload successfully", multipartFile.getOriginalFilename());
     }
-
 }

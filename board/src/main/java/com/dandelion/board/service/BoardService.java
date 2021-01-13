@@ -26,6 +26,10 @@ public class BoardService {
         return boardRepository.findById(id);
     }
 
+    public Board findBoard(int number) {
+        return boardRepository.getOne(number);
+    }
+
     public Board modifyBoard(int id, Board newBoard) {
         Board board = boardRepository.getOne(id);
         board.setTitle(newBoard.getTitle());
