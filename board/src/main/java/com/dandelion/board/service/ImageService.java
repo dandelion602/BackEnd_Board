@@ -20,14 +20,23 @@ public class ImageService {
     ImageRepository imageRepository;
 
 
-    public void write(MultipartFile file, Path dir) {
-        Path filepath = Paths.get(dir.toString(), file.getOriginalFilename());
+    public void write(MultipartFile file, Path dir, String newFileName) {
+
+        String format = getFormat(file);
+        Path filepath = Paths.get(dir.toString(), newFileName + format);
 
         try (OutputStream os = Files.newOutputStream(filepath)) {
             os.write(file.getBytes());
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public String getFormat (MultipartFile file) {
+        String originalFileName = file.getOriginalFilename();
+        int dotPos = originalFileName.indexOf(".");
+        String format = originalFileName.substring(dotPos, originalFileName.length());
+        return format;
     }
 
     public Image save(Image image) {

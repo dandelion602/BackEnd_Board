@@ -20,56 +20,30 @@ public class ImageController {
 
     @Autowired
     ImageService imageService;
-
     @Autowired
     BoardService boardService;
 
-
     @PostMapping("/fileupload/")
-    public String fileupload(@RequestParam("file") MultipartFile[] multipartFile) {
+    public String fileupload(@RequestParam("files") MultipartFile[] multipartFile) {
 
-
-//        System.out.println(multipartFile.length);
-        List<Board> boardList = boardService.boardList();
-        int lastNumber = boardList.stream()
-                .sorted(Comparator.comparing(Board::getNumber).reversed())
-                .findFirst()
-                .get()
-                .getNumber();
-        Board board = boardService.findBoard(lastNumber);
-
+        int order = 0;
         Path dir = Paths.get("c:/images/");
+        Board board = boardService.findLastBoard();
 
         for (MultipartFile file : multipartFile) {
 
-            imageService.write(file, dir);
-
+            imageService.write(file, dir, board.getNumber() + "_" + order++);
             Image image = new Image();
-
+            // 나중에 이미지서비스에 메서드로 옮기기...
             image.setFileName(file.getOriginalFilename());
             image.setSize( (int) file.getSize());
             image.setImageDirNumber(dir.toString());
-            image.setBoard(board);
 
+            image.setBoard(board);
             imageService.save(image);
         }
 
-//        //이미지 파일을 받아서 dir 경로에 저장
-//        Path dir = Paths.get("c:/images/");
-//        imageService.write(multipartFile, dir);
-//
-//        //이미지 경로 및 내용 db에 저장
-//        Image image = new Image();
-//
-//        image.setFileName(multipartFile.getOriginalFilename());
-//        image.setSize( (int) multipartFile.getSize());
-//        image.setImageDirNumber(dir.toString());
-//
-
-//
-//        image.setBoard(board);
-//        imageService.save(image);
-//
+        System.out.println(boardService.findLastBoard());
         return String.format("file upload successfully"); //multipartFile.getOriginalFilename());
     }
 }

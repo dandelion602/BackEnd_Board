@@ -18,6 +18,10 @@ public class BoardService {
         return boardRepository.save(board);
     }
 
+    public Board findLastBoard() {
+        return boardRepository.findLastBoard();
+    }
+
     public List<Board> boardList() {
         return boardRepository.findAll();
     }
