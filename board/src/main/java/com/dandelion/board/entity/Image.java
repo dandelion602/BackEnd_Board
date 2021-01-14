@@ -24,4 +24,5 @@ public class Image {
     private String fileName;
     private String imageDirNumber;
     private int size;
+    private int order_number;
 }

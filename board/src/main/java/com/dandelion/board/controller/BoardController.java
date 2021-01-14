@@ -8,8 +8,10 @@ import com.dandelion.board.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -24,8 +26,9 @@ public class BoardController {
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public List<Board> boardList() {
-        return boardService.boardList();
+    public Stream<Board> boardList() {
+        return boardService.boardList().stream()
+                .sorted(Comparator.comparing(Board::getNumber).reversed());
     }
 
     @RequestMapping(value = "/findBoardId/{id}", method = RequestMethod.GET)

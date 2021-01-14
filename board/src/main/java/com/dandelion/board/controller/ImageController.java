@@ -32,12 +32,13 @@ public class ImageController {
 
         for (MultipartFile file : multipartFile) {
 
-            imageService.write(file, dir, board.getNumber() + "_" + order++);
+            imageService.write(file, dir, board.getNumber() + "_" + (order));
             Image image = new Image();
             // 나중에 이미지서비스에 메서드로 옮기기...
             image.setFileName(file.getOriginalFilename());
             image.setSize( (int) file.getSize());
             image.setImageDirNumber(dir.toString());
+            image.setOrder_number(order++);
 
             image.setBoard(board);
             imageService.save(image);

@@ -1,17 +1,21 @@
-package com.dandelion.board;
+package com.dandelion.board.service;
 
 import com.dandelion.board.entity.Board;
-import com.dandelion.board.service.BoardService;
+import com.dandelion.board.repository.BoardRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 @SpringBootTest
-class BoardApplicationTests {
+@Transactional
+class BoardServiceTest {
 
     @Autowired
     BoardService service;
+    @Autowired
+    BoardRepository boardRepository;
 
     @Test
     void save() {
