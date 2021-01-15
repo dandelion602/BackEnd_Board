@@ -1,15 +1,14 @@
 package com.dandelion.board.entity;
 
-import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.Columns;
 
 import javax.persistence.*;
+import java.util.Collection;
+import java.util.Date;
 
-//getter 자동 생성
+
 @Getter
-//setter 자동생성
 @Setter
 @Entity
 public class Board {
@@ -21,13 +20,31 @@ public class Board {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int number;
 
+    @Column(name = "title")
     private String title;
-    private String contents;
-    private String date;
-    private String modify_day;
 
-    private int member_number;
+    @Column(name = "contents", length = 1000)
+    private String contents;
+
+    @Column(name = "date")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date date = new Date();
+
+    @Column(name = "modifyDate")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date modifyDate = new Date();
+
+    @Column(name = "view")
     private int view;
-    private int temp_status;
+
+    @Column(name = "tempStatus")
+    private int tempStatus;
+
+    @Column(name = "price")
     private int price;
+
+    @OneToMany
+    @JoinColumn(name = "boardNumber")
+    public Collection<Image> images;
+
 }

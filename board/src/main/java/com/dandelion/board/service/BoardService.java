@@ -1,7 +1,9 @@
 package com.dandelion.board.service;
 
 import com.dandelion.board.entity.Board;
+import com.dandelion.board.entity.Image;
 import com.dandelion.board.repository.BoardRepository;
+import com.dandelion.board.repository.ImageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,16 +16,27 @@ public class BoardService {
     @Autowired
     BoardRepository boardRepository;
 
+    @Autowired
+    ImageRepository imageRepository;
+
     public Board save(Board board) {
         return boardRepository.save(board);
     }
 
-    public List<Board> boardList() {
+    public List<Board> findAll() {
         return boardRepository.findAll();
     }
 
-    public Optional<Board> findId(int id) {
-        return boardRepository.findById(id);
+    public Board findLastBoard() {
+        return boardRepository.findLastBoard();
+    }
+
+    public Optional<Board> findById(int number) {
+        return boardRepository.findById(number);
+    }
+
+    public Board getOne(int number) {
+        return boardRepository.getOne(number);
     }
 
     public Board modifyBoard(int id, Board newBoard) {
@@ -31,7 +44,7 @@ public class BoardService {
         board.setTitle(newBoard.getTitle());
         board.setContents(newBoard.getContents());
         board.setPrice(newBoard.getPrice());
-        board.setModify_day(newBoard.getModify_day());
+        board.setModifyDate(newBoard.getModifyDate());
         return boardRepository.save(board);
 
     }
