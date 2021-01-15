@@ -13,7 +13,6 @@ public interface BoardRepository extends JpaRepository<Board, Integer> {
     @Query(value = "SELECT * FROM board ORDER BY number DESC LIMIT 1;", nativeQuery = true)
     Board findLastBoard();
 
-    @Query(value = "select * from board where title like '%part%'", nativeQuery = true)
-    List<Board> searchWithTitle(@Param("part") String part);
-
+    @Query("select b from Board b where b.title like %?1%")
+    List<Board> searchWithTitle(String title);
 }

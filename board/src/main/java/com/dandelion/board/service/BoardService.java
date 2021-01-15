@@ -31,6 +31,10 @@ public class BoardService {
         return boardRepository.findLastBoard();
     }
 
+    public List<Board> searchWithTitle(String title) {
+        return boardRepository.searchWithTitle(title);
+    }
+
     public Optional<Board> findById(int number) {
         return boardRepository.findById(number);
     }
