@@ -52,4 +52,9 @@ public class ImageService {
         return "." + format;
     }
 
+    public Path getAbsolutePath (String relativePath) {
+        Path path = Paths.get(relativePath);
+        return path.toAbsolutePath().normalize();
+    }
+
 }

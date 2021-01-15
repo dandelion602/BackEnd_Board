@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Comparator;
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
 
@@ -40,5 +41,10 @@ public class BoardController {
     @RequestMapping(value = "/modifyBoard/{id}", method = RequestMethod.POST)
     public Board modifyBoard(@PathVariable int id, @RequestBody Board newBoard) {
         return boardService.modifyBoard(id, newBoard);
+    }
+
+    @RequestMapping(value = "/board/{partOfTitle}", method = RequestMethod.GET)
+    public List<Board> searchWithTitle(@PathVariable String partOfTitle) {
+        return boardService.searchWithTitle(partOfTitle);
     }
 }
