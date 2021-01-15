@@ -4,19 +4,16 @@ import com.dandelion.board.entity.Board;
 import com.dandelion.board.entity.Image;
 import com.dandelion.board.service.BoardService;
 import com.dandelion.board.service.ImageService;
-import net.bytebuddy.utility.RandomString;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 
-import java.io.IOException;
-import java.io.OutputStream;
-import java.nio.file.Files;
+
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Comparator;
-import java.util.List;
+
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -33,7 +30,7 @@ public class ImageController {
     public String fileupload(@RequestParam("files") MultipartFile[] multipartFile) {
 
         int order = 0;
-        Path dir = Paths.get("C:\\Users\\M\\Desktop\\projcet\\vue\\dandelion_project\\Front_End\\dandelion 2\\src\\assets\\images\\");
+        Path dir = Paths.get("C:\\Users\\M\\Desktop\\projcet\\BackEnd_Board\\vue\\dandelion 2\\src\\assets\\images\\");
         Board board = boardService.findLastBoard();
 
         for (MultipartFile file : multipartFile) {

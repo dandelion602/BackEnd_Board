@@ -10,7 +10,8 @@ const routes = [
       { path: '/test', component: () => import('pages/Test.vue')},
       { path: '/stuff', component: () => import('pages/Stuff_upload.vue')},
       { path: '/register', component: () => import('pages/Register.vue')},
-      { path: '/login', component: () => import('pages/Login.vue')}
+      { path: '/login', component: () => import('pages/Login.vue')},
+      { path: '/profile', component: () => import('pages/profile.vue')}
     ]
   },
 
@@ -20,6 +21,6 @@ const routes = [
     path: '*',
     component: () => import('pages/Error404.vue')
   }
-] 
+]
 
 export default routes

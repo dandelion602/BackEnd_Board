@@ -11,7 +11,7 @@
 
             <q-card-section>
               <div class="text-h6">{{item.title}}</div>
-              <div class="text-h6 text-right">{{ item.price }}원</div>
+              <div class="text-h6 text-right">{{ numberWithCommas(item.price) }}원</div>
             </q-card-section>
 
 

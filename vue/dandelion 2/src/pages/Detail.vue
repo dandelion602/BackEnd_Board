@@ -5,16 +5,23 @@
         <h3>상품 상세 페이지</h3>
         <div class="row">
           <div class="col-6">
-            <q-img
-              contain
-              :src="require('../assets/images/라이언1.png')"
-              :ratio="1"
-            />
+            <div class="q-pa-md">
+              <q-carousel
+                swipeable
+                animated
+                v-model="slide"
+                thumbnails
+                infinite
+              >
+                <q-carousel-slide v-for="image in curItem.images" :key="image.number" :name="image.orderNumber" :img-src="require('../assets/images/' + image.fileName +image.format)">
+                </q-carousel-slide>
+              </q-carousel>
+            </div>
           </div>
           <div class="col-6 q-px-md">
             <div class="text-h4 q-mb-none q-mt-md">{{curItem.title}}</div>
             <div class="text-subtitle1 q-mt-sm">{{curItem.contents}}</div>
-            <div class="text-h4 q-mt-xl text-right">{{ curItem.price }}원</div>
+            <div class="text-h4 q-mt-xl text-right">{{ numberWithCommas(curItem.price) }}원</div>
             <div class="text-right">
               <q-btn color="primary q-mt-xl " :to="`/buy/${curItem.number}`">구매하기</q-btn>
             </div>
@@ -29,7 +36,7 @@
             <q-item-section avatar>
               <q-avatar rounded>
                 <q-img
-                  :src="require('../assets/images/라이언1.png')"
+                  :src="require('../assets/images/' + item.images[0].fileName + item.images[0].format)"
                   :ratio="1"
                 />
               </q-avatar>
@@ -39,7 +46,7 @@
               <q-item-label caption>Caption</q-item-label>
             </q-item-section>
 
-            <q-item-section side>{{numberWithCommas(item.price)}}원</q-item-section>
+            <q-item-section side>{{ numberWithCommas(item.price) }}원</q-item-section>
           </q-item>
         </q-list>
       </div>
@@ -67,7 +74,7 @@ export default {
         //   }
         // }
       ],
-
+      slide: 0
     }
   },
   mounted() {
@@ -78,7 +85,7 @@ export default {
       return this.$route.params.itemId
     },
     curItem () {
-      return this.itemList.filter(i => i.number == this.number)[0]
+      return this.itemList.filter(i => i.number == this.itemId)[0]
     }
   },
   methods : {
