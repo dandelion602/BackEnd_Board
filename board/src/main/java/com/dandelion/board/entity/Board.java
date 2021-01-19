@@ -10,41 +10,46 @@ import java.util.Date;
 
 @Getter
 @Setter
+@Table(name = "board")
 @Entity
 public class Board {
-
-    public Board() {
-    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int number;
 
-    @Column(name = "title")
+    @Column(name = "title", nullable = false)
     private String title;
 
-    @Column(name = "contents", length = 1000)
-    private String contents;
+    @ManyToOne
+    @JoinColumn(name = "member_number", nullable = false)
+    public Member member;
 
-    @Column(name = "date")
+    @Column(name = "view", nullable = false)
+    private int view;
+
+    @Column(name = "date", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date date = new Date();
 
-    @Column(name = "modifyDate")
+    @Column(name = "modify_date")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date modifyDate = new Date();
+    private Date modifyDate;
 
-    @Column(name = "view")
-    private int view;
+    @Column(name = "contents", length = 5000)
+    private String contents;
 
-    @Column(name = "tempStatus")
-    private int tempStatus;
+    @Column(name = "status", nullable = false)
+    private int status;
 
-    @Column(name = "price")
+    @Column(name = "price", nullable = false)
     private int price;
 
+
+    // --FK--
     @OneToMany
-    @JoinColumn(name = "boardNumber")
-    public Collection<Image> images;
+    @JoinColumn(name = "board_number", table = "item_image")
+    public Collection<ItemImage> itemImages;
+
 
 }

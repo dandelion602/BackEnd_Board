@@ -1,7 +1,6 @@
 package com.dandelion.board.service;
 
 import com.dandelion.board.entity.Board;
-import com.dandelion.board.entity.Image;
 import com.dandelion.board.repository.BoardRepository;
 import com.dandelion.board.repository.ImageRepository;
 import org.springframework.beans.factory.annotation.Autowired;

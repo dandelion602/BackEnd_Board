@@ -7,11 +7,9 @@ import javax.persistence.*;
 
 @Getter
 @Setter
+@Table(name = "item_image")
 @Entity
-public class Image {
-
-    public Image() {
-    }
+public class ItemImage {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
