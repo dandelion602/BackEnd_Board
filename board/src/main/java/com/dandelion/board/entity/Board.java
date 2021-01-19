@@ -46,10 +46,10 @@ public class Board {
     private int price;
 
 
-    // --FK--
-    @OneToMany
-    @JoinColumn(name = "board_number", table = "item_image")
-    public Collection<ItemImage> itemImages;
+//     --FK--
+//    @OneToMany
+//    @JoinColumn(name = "board_number", table = "item_image")
+//    public Collection<ItemImage> itemImages;
 
 
 }

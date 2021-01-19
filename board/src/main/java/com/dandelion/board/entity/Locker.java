@@ -8,6 +8,7 @@ import java.util.Date;
 
 @Getter
 @Setter
+@Table(name = "locker")
 @Entity
 public class Locker {
 
@@ -15,20 +16,20 @@ public class Locker {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int number;
 
-    @Column(name = "spotLockerNumber")
-    private int spotLockerNumber;
+    @Column(name = "loc_number", nullable = false)
+    private int locNumber;
 
-    @Column(name = "size")
+    @Column(name = "size", nullable = false)
     private int size;
 
-    @Column(name = "locked")
-    private char locked;
+    @Column(name = "is_use", nullable = false)
+    private int isUse;
 
-    @OneToOne
-    @JoinColumn(name = "boardNumber")
-    private Board board;
+//    @OneToOne
+//    @JoinColumn(name = "board_number", table = "board")
+//    private Board boardNumber;
 
-    @Column(name = "password")
+    @Column(name = "password", length = 50)
     private String password;
 
     @Column(name = "input_date")

@@ -7,18 +7,19 @@ import javax.persistence.*;
 
 @Getter
 @Setter
+@Table(name = "locker_location")
 @Entity
 public class LockerLocation {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "loc_number")
-    private int loc_number;
+    private int locNumber;
 
-    @Column(name = "name")
+    @Column(name = "name", nullable = false, length = 50)
     private String name;
 
     @Column(name = "locker_count")
-    private int locker_count;
+    private int lockerCount;
 
     @Column(name = "latitude")
     private double latitude;
@@ -26,7 +27,7 @@ public class LockerLocation {
     @Column(name = "longitude")
     private double longitude;
 
-    @Column(name = "image")
+    @Column(name = "image", length = 360)
     private String image;
 
 }

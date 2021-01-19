@@ -42,10 +42,10 @@ public class ImageController {
             itemImage.setFileName(board.getNumber() + "_" + (order));
             itemImage.setSize( (int) file.getSize());
             itemImage.setImageDir(dir.toString());
-            itemImage.setFileOriName(file.getOriginalFilename());
+            itemImage.setOriginalFilename(file.getOriginalFilename());
             itemImage.setFormat(imageService.getFormat(file));
             itemImage.setOrderNumber(order);
-            itemImage.setBoardNumber(board.getNumber());
+            itemImage.setBoardNumber(board);
             imageService.save(itemImage);
 
             order++;

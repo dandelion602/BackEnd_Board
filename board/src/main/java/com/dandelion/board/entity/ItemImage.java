@@ -15,25 +15,25 @@ public class ItemImage {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int number;
 
-    @Column(name = "fileOriName")
-    private String fileOriName;
+    @ManyToOne
+    @JoinColumn(name = "board_number", table = "board")
+    private Board boardNumber;
 
-    @Column(name = "fileName")
+    @Column(name = "image_dir", nullable = false, length = 300)
+    private String imageDir;
+
+    @Column(name = "file_name", nullable = false, length = 50)
     private String fileName;
 
-    @Column(name = "imageDir")
-    private String imageDir;
+    @Column(name = "format", nullable = false, length = 10)
+    private String format;
 
     @Column(name = "size")
     private int size;
 
-    @Column(name = "orderNumber")
+    @Column(name = "order_number", nullable = false)
     private int orderNumber;
 
-    @Column(name = "format")
-    private String format;
-
-    @Column(name = "boardNumber")
-    private int boardNumber;
-
+    @Column(name = "original_filename", nullable = false, length = 45)
+    private String originalFilename;
 }

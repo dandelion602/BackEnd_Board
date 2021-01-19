@@ -15,26 +15,26 @@ public class Deal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int number;
-
-    @OneToOne
-    @JoinColumn(name = "board_number", nullable = false)
-    private Board boardNumber;
-
-    @ManyToOne
-    @JoinColumn(name = "seller_number", nullable = false)
-    private Member sellerNumber;
-
-    @ManyToOne
-    @JoinColumn(name = "buyer_number", nullable = true)
-    private Member buyerNumber;
-
-    @ManyToOne
-    @JoinColumn(name = "bird_number")
-    private Member birdNumber;
-
-    @ManyToOne
-    @JoinColumn(name = "locker_number", nullable = true)
-    private Locker lockerNumber;
+//
+//    @OneToOne
+//    @JoinColumn(name = "board_number", table = "board", nullable = false)
+//    private Board boardNumber;
+//
+//    @ManyToOne
+//    @JoinColumn(name = "seller_number", table = "member", nullable = false)
+//    private Member sellerNumber;
+//
+//    @ManyToOne
+//    @JoinColumn(name = "buyer_number", table = "member", nullable = true)
+//    private Member buyerNumber;
+//
+//    @ManyToOne
+//    @JoinColumn(name = "bird_number", table = "member")
+//    private Member birdNumber;
+//
+//    @ManyToOne
+//    @JoinColumn(name = "locker_number", nullable = true, table = "locker")
+//    private Locker lockerNumber;
 
     @Column(name = "receiving_date")
     private Date receivingDate;
