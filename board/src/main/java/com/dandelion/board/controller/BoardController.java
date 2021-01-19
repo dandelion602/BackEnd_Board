@@ -35,7 +35,7 @@ public class BoardController {
 
     @RequestMapping(value = "/findBoardId/{id}", method = RequestMethod.GET)
     public Optional<Board> findId(@PathVariable int id) {
-        return boardService.findById(id)    ;
+        return boardService.findById(id);
     }
 
     @RequestMapping(value = "/modifyBoard/{id}", method = RequestMethod.POST)

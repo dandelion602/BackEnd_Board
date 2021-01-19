@@ -9,19 +9,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
 
+import java.util.List;
+
 @SpringBootTest
 class BoardControllerTest {
 
-    @LocalServerPort
-    private int port;
-
-    @Autowired
-    private BoardController boardController;
     @Autowired
     BoardService boardService;
-
-    @Autowired
-    private TestRestTemplate restTemplate;
 
     @Test
     void searchWithTitle() throws Exception{
@@ -31,8 +25,9 @@ class BoardControllerTest {
         board.setPrice(2323);
         boardService.save(board);
 
-//        this.restTemplate.getForObject("http://localhost:" + port + "/" + "board/this")
-//        Assertions.assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/",
-//                String.class).getClass().getName()).isEqualTo(Class.forName("List"));
+        String part = "is";
+        List<Board> searchedBoard = boardService.searchWithTitle(part);
+        Assertions.assertThat(board.getTitle().contains(part)).isEqualTo(true);
+
     }
 }
